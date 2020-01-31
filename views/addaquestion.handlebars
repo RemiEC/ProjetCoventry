@@ -1,0 +1,49 @@
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Add a Question</title>
+		<link href="css/stylesheet.css" type="text/css" rel="stylesheet" />
+	</head>
+	<header >
+            <h2 id="title"> <a class="title"href="/">AskMe</a></h2>
+            {{#if name}}
+            <p id="greetings">Welcome, {{name}}</p>
+            <a href="/logout" id="logout">Logout</a>
+            {{else}}
+            <a id="register" href="/register" >Register</a>
+
+            <form id="header-login" action="/login" method="post" >
+                    Username: <input type="text" name="user" id="login" placeholder="your username" >
+                    Password: <input type="password" name="pass" id="login" placeholder="your password" >
+                    <input type="submit" value="Submit">
+            </form>
+            {{/if}}
+        </header>
+	<body>
+                {{#if error}}
+                <section class="error">
+                        <p>An error occured: {{ error }}</p>
+                </section>
+                {{/if}}
+                <section id="askquestion">
+                        <p class="ask">Ask a question</p>
+                        <form id="askquestionform" enctype="multipart/form-data" action="/addaquestion" method="post" >
+                                <p class="boxTitles">Title</p>
+                                <input type="text" name="question" id="questionTitle" placeholder="Short question title" required>
+                                <br>
+                                <p class="boxTitles">Description</p>
+                                <textarea rows="15" cols="80" name="details" id="questionDesc" placeholder="Give a description for your question" required></textarea>
+                                <br>
+                                <p class="boxTitles">Optional image</p>
+                                <input type="file" name="image" id=questionImageUpload>
+                                <br>
+                                <br>
+                                <input type="submit" value="Post", id=postQuestion>
+                        </form>
+
+                </section>
+
+	</body>
+</html>

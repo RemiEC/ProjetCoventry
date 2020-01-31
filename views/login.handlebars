@@ -1,0 +1,30 @@
+
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Log In</title>
+		<meta name="description" content="form to add new books">
+		<meta name="author" content="Mark Tyers">
+		<link rel="stylesheet" href="/css/stylesheet.css">
+	</head>
+	<body>
+		<header>
+		<h2 id="title"> <a class="title"href="/">AskMe</a></h2>
+		</header>
+		 <h2>{{message}}</h2>
+		<h1>Log In</h1>
+		{{#if error}}
+                <section class="error">
+                        <p>An error occured: {{ error }}</p>
+                </section>
+        {{/if}}
+		<form action="/login" method="post">
+			<p>Username:<br /><input type="text" name="user" placeholder="Your Username" value="{{user}}" autofocus></p>
+			<p>Password:<br /><input type="password" name="pass" placeholder="Your Password" value=""></p>
+			<p><input type="submit" value="Log in"></p>
+		</form>
+		<p><a href="/register">Don't have an account? Click here to Register!</a></p>
+	</body>
+</html>

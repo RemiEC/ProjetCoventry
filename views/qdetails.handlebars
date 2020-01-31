@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Frequently Asked Questions</title>
+	<link rel="stylesheet" href="/css/stylesheet.css">
+</head>
+
+<body>
+	<header>
+		<h2 id="title"> <a class="title" href="/">AskMe</a></h2>
+		{{#if name}}
+		<p id="greetings">Welcome, {{name}}</p>
+		<a href="/logout" id="logout">Logout</a>
+		{{else}}
+		<a id="register" href="/register">Register</a>
+
+		<form id="header-login" action="/login" method="post">
+			Username: <input type="text" name="user" id="login" placeholder="your username">
+			Password: <input type="password" name="pass" id="login" placeholder="your password">
+			<input type="submit" id="login"value="Submit">
+		</form>
+		{{/if}}
+	</header>
+
+	{{#if error}}
+	<section class="error">
+		<p>An error occured: {{ error }}</p>
+	</section>
+	{{/if}}
+
+	<section id="qdetailblock">
+		<img class="avatar" src={{question.avatarPath}} alt="Asker's avatar" height="50" width="50">
+		<h1 class> {{ question.question }} </h2>
+			<p class="username"> Posted on {{ question.dateAdded }} by {{ question.user }}
+				{{#if question.gold}}
+				<img class="star" src="../images/gold-star.png" alt="gold star">
+				{{else if question.silver}}
+				<img class="star" src="../images/silver-star.png" alt="silver star">
+				{{else if question.bronze}}
+				<img class="star" src="../images/bronze-star.png" alt="bronze star">
+				{{/if}}
+			</p>
+			<p> {{question.descript}}</p>
+			{{#if question.screenshotPath}}
+			<a target="_blank" href={{question.screenshotPath}}>
+				<img src={{question.screenshotPath}} alt="question image" id="imagesmall"></a>
+			{{/if}}
+	</section>
+
+
+	<section id="answerblock">
+		<h1 class="ans">Answers</h1>
+		{{#if name}}
+		<section>
+			<form action='/addanswer' method='post'>
+				<textarea id="answer-input" placeholder="Post an answer" name="answer"></textarea>
+				<input type="hidden" value="{{ question.questionID }}" name="questionId">
+				<input type="hidden" value="{{ login }}" name="answererUsername">
+				<input type="submit" value="Submit">
+			</form>
+		</section>
+		{{else}}
+		<br>
+		{{/if}}
+
+		<hr class="separation">
+		{{#each answer}}
+		<p><img class="PPAnswer" src={{this.avatarPath}} alt="logo">Posted by {{ this.user }}
+			{{#if this.gold}}
+			<img class="star" src="../images/gold-star.png" alt="gold star">
+			{{else if this.silver}}
+			<img class="star" src="../images/silver-star.png" alt="silver star">
+			{{else if this.bronze}}
+			<img class="star" src="../images/bronze-star.png" alt="bronze star">
+			{{/if}}
+			on {{this.dateAdded}}</p>
+
+		<section class="dropdown">
+			<button class="dropbtn">...</button>
+			<section class="dropdown-content">
+				<form action="/correct" method="post">
+					<input type="hidden" name="answerId" value="{{ this.answerID }}">
+					<input type="hidden" name="author" value="{{ this.user }}">
+					<input type="hidden" name="questionId" value="{{ ../question.questionID }}">
+					{{#if ../poster}}
+					<input type="submit" value="Flag as Correct">
+					{{/if}}
+				</form>
+				<form id="offtopic" action="/offtopic" method="post">
+					<input type="hidden" name="answerId" value="{{ this.answerID }}">
+					<input type="hidden" name="author" value="{{ this.user }}">
+					<input type="hidden" name="questionId" value="{{ ../question.questionID }}">
+					<input type="submit" value="Flag as Off Topic">
+				</form>
+			</section>
+		</section>
+
+		<p class="answers"> {{ this.answer }}</p>
+
+		{{#if this.correct}}
+		<img src="../images/correct.png" width="20" height="30" alt="correct" id="tick">
+		{{/if}}
+
+		{{#displayRating ../name this.user }}
+		<section class="rate">
+			<p>You cannot rate answers if it is your answer or if you are not logged in.</p>
+			<form id="rate" action="/rate" method="post">
+				<input type="hidden" name="answerId" value="{{ this.answerID }}">
+				<input type="hidden" name="questionId" value="{{ ../question.questionID }}">
+				<input onchange="this.form.submit();" type="radio" name="stars" value="1" disabled> &#x2605 &nbsp;
+				<input onchange="this.form.submit();" type="radio" name="stars" value="2" disabled> &#x2605&#x2605&nbsp;
+				<input onchange="this.form.submit();" type="radio" name="stars" value="3" disabled>
+				&#x2605&#x2605&#x2605&nbsp;
+				<input onchange="this.form.submit();" type="radio" name="stars" value="4" disabled>
+				&#x2605&#x2605&#x2605&#x2605&nbsp;
+				<input onchange="this.form.submit();" type="radio" name="stars" value="5" disabled>
+				&#x2605&#x2605&#x2605&#x2605&#x2605&nbsp;
+			</form>
+			{{#if ../avgStars}}
+			<p id="average">Average rating: {{../avgStars}}</p>
+			{{/if}}
+		</section>
+		{{else}}
+		<section class="rate">
+			<p>Rate this answer</p>
+			<form id="rate" action="/rate" method="post">
+				<input type="hidden" name="answerId" value="{{ ../answerID }}">
+				<input type="hidden" name="questionId" value="{{ ../../question.questionID }}">
+				<input onchange="this.form.submit();" type="radio" name="stars" value="1"> &#x2605 &nbsp;
+				<input onchange="this.form.submit();" type="radio" name="stars" value="2"> &#x2605&#x2605&nbsp;
+				<input onchange="this.form.submit();" type="radio" name="stars" value="3"> &#x2605&#x2605&#x2605&nbsp;
+				<input onchange="this.form.submit();" type="radio" name="stars" value="4">
+				&#x2605&#x2605&#x2605&#x2605&nbsp;
+				<input onchange="this.form.submit();" type="radio" name="stars" value="5">
+				&#x2605&#x2605&#x2605&#x2605&#x2605&nbsp;
+			</form>
+
+			{{#if ../avgStars}}
+			<p id="average">Average rating: {{../avgStars}}</p>
+			{{/if}}
+			</section>
+		<br>
+		{{/displayRating}}
+		<hr class="separation">
+		{{/each}}
+	</section>
+</body>
+
+</html>

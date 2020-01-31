@@ -1,0 +1,37 @@
+
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<title>Create an Account</title>
+
+		<link rel="stylesheet" href="/css/stylesheet.css">
+	</head>
+	<body>
+		<header>
+		<h2 id="title"> <a class="title"href="/">AskMe</a></h2>
+		{{#if name}}
+            <p id="greetings">Welcome {{name}}</p>
+            <a href="/logout" id="logout">Logout</a>
+            {{else}}
+            <form id="header-login" action="/login" method="post" >
+                    Username: <input type="text" name="user" id="login" placeholder="Your Username" >
+                    Password: <input type="password" name="pass" id="login" placeholder="Your Password" >
+                    <input type="submit" id="login"value="Submit">
+            </form>
+            {{/if}}
+		</header>
+		<h1>Create an Account</h1>
+		{{#if error}}
+            <section class="errorregister">
+                <p>An error occured: {{ error }}</p>
+            </section>
+        {{/if}}
+		<form action="/register" enctype="multipart/form-data" method="post">
+			<p>Username:<br /><input type="text" name="user" id="user" placeholder="your preferred username (no spaces)" value=""></p>
+            <p>Password:<br /><input type="password" name="pass" id="pass" placeholder="your chosen password" value=""></p>
+			<p>Profile Picture:<br /><input type="file" name="image" id="profileUpload"></p>
+			<p><input type="submit" value="Create" id="submit"></p>
+		</form>
+	</body>
+</html>

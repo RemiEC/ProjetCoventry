@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Main Page</title>
+
+	<link rel="stylesheet" href="/css/stylesheet.css">
+</head>
+<!--- If the user is not logged in, the {{name}} is empty, so I use it as a condition for logged/not logged test--->
+
+<body>
+	<header>
+		<h2> <a class="title" href="/">AskMe</a></h2>
+		{{#if name}}
+		<p id="greetings">Welcome, {{name}}</p>
+		<a href="/logout" id="logout">Logout</a>
+		{{else}}
+		<a id="register" href="/register">Register</a>
+
+		<form id="header-login" action="/login" method="post">
+			Username: <input type="text" name="user" id="userLogin" placeholder="your username">
+			Password: <input type="password" name="pass" id="passLogin" placeholder="your password">
+			<input type="submit" value="Submit" id="login">
+		</form>
+		{{/if}}
+
+
+
+	</header>
+	<section id="bodysansheader">
+		<section id="addaquestion">
+			{{#if name}}
+			<a id="postquestion" href="addaquestion">Post your own question</a>
+			<br>
+			{{/if}}
+
+			<h3>Search question</h3>
+			<form action="/" method="get">
+				<input type="text" name="q" id="typeQuestion" value="{{query}}" placeholder="Search for a question...">
+				<input type="submit" name="search" id="searchQuestion" value="Search">
+			</form>
+			<br>
+		</section>
+		<!-- you can repeat the block underneath to get multiple answers, so do a "for each ... " with the database data and print all answers-->
+		<br>
+		{{#if error}}
+		<section class="error">
+			<p>An error occured: {{ error }}</p>
+		</section>
+		{{/if}}
+
+		<figure id="floating">
+			<img src="images/question.png" width="200" height="300" alt="Question">
+		</figure>
+
+		{{#each listequestions}}
+		<section id="questionblock">
+
+			<p id="questionNo">{{inc @index}}</p>
+			<a href="/question/{{this.questionID}}"><img class="avatar" src="/images/textpost.png" alt="logo"
+					height="50" width="50"></a>
+			&nbsp;
+			<a href="/question/{{this.questionID}}"> {{this.question}}</a>
+			<p class="username" id="asker"> &nbsp;Posted by {{this.user}}
+				{{#if this.gold}}
+				<img class="star" src="../images/gold-star.png" alt="gold star">
+				{{else if this.silver}}
+				<img class="star" src="../images/silver-star.png" alt="silver star">
+				{{else if this.bronze}}
+				<img class="star" src="../images/bronze-star.png" alt="bronze star">
+				{{/if}}
+                on  {{this.dateAdded}}<img class="PP" src={{this.avatarPath}} alt="logo" ></a> </p>  
+            {{#if this.solved}}
+            <img src="../images/correct.png" width="20" height="30" alt="correct" id="solved">
+            {{/if}}
+          <br>
+         </section>
+        {{/each}}
+        
+        
+
+       </section>
+        
+    </body>
+
+</html>

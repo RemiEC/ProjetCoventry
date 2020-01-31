@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>userQuestion - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Answer.html">Answer</a><ul class='methods'><li data-type='method'><a href="Answer.html#addAnswer">addAnswer</a></li><li data-type='method'><a href="Answer.html#allAnswers">allAnswers</a></li><li data-type='method'><a href="Answer.html#oneAnswer">oneAnswer</a></li></ul></li><li><a href="correctAnswer.html">correctAnswer</a><ul class='methods'><li data-type='method'><a href="correctAnswer.html#__createTestDB">__createTestDB</a></li><li data-type='method'><a href="correctAnswer.html#addCorrectAnswer">addCorrectAnswer</a></li><li data-type='method'><a href="correctAnswer.html#oneCorrectAnswer">oneCorrectAnswer</a></li></ul></li><li><a href="module.exports.html">exports</a><ul class='methods'><li data-type='method'><a href="module.exports.html#__createTestDB">__createTestDB</a></li><li data-type='method'><a href="module.exports.html#addscore">addscore</a></li><li data-type='method'><a href="module.exports.html#getMaxScore">getMaxScore</a></li><li data-type='method'><a href="module.exports.html#getPP">getPP</a></li><li data-type='method'><a href="module.exports.html#login">login</a></li><li data-type='method'><a href="module.exports.html#register">register</a></li><li data-type='method'><a href="module.exports.html#subscore">subscore</a></li><li data-type='method'><a href="module.exports.html#testforthrow">testforthrow</a></li><li data-type='method'><a href="module.exports.html#testuserandpass">testuserandpass</a></li><li data-type='method'><a href="module.exports.html#upload">upload</a></li></ul></li><li></li><li><a href="Question.html">Question</a><ul class='methods'><li data-type='method'><a href="Question.html#addQuestion">addQuestion</a></li><li data-type='method'><a href="Question.html#allQuestions">allQuestions</a></li><li data-type='method'><a href="Question.html#checkParams">checkParams</a></li><li data-type='method'><a href="Question.html#searchQuestion">searchQuestion</a></li></ul></li><li><a href="questionAnswer.html">questionAnswer</a><ul class='methods'><li data-type='method'><a href="questionAnswer.html#__createTestDB">__createTestDB</a></li><li data-type='method'><a href="questionAnswer.html#addQuestionAnswer">addQuestionAnswer</a></li><li data-type='method'><a href="questionAnswer.html#allQuestionAnswers">allQuestionAnswers</a></li></ul></li><li><a href="userAnswer.html">userAnswer</a><ul class='methods'><li data-type='method'><a href="userAnswer.html#__createTestDB">__createTestDB</a></li><li data-type='method'><a href="userAnswer.html#addUserAnswer">addUserAnswer</a></li><li data-type='method'><a href="userAnswer.html#allUserAnswers">allUserAnswers</a></li></ul></li><li><a href="userQuestion.html">userQuestion</a><ul class='methods'><li data-type='method'><a href="userQuestion.html#__createTestDB">__createTestDB</a></li><li data-type='method'><a href="userQuestion.html#addUserQuestion">addUserQuestion</a></li><li data-type='method'><a href="userQuestion.html#allUserQuestions">allUserQuestions</a></li><li data-type='method'><a href="userQuestion.html#oneUserQuestion">oneUserQuestion</a></li><li data-type='method'><a href="userQuestion.html#searchUserQuestion">searchUserQuestion</a></li></ul></li></ul><h3>Modules</h3><ul><li><a href="module-controllers_correct.html">controllers/correct</a></li><li><a href="module-modules_getRating.html">modules/getRating</a></li><li><a href="module-modules_markCorrect.html">modules/markCorrect</a></li><li><a href="module-modules_submitImage.html">modules/submitImage</a><ul class='methods'><li data-type='method'><a href="module-modules_submitImage.html#.validate">validate</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html">Add Question Page</a></li><li><a href="global.html#getRankingArr">getRankingArr</a></li><li><a href="global.html#getRankingObj">getRankingObj</a></li><li><a href="global.html#Handlebars">Handlebars</a></li><li><a href="global.html">Home Page</a></li><li><a href="global.html#insertData">insertData</a></li><li><a href="global.html#isSolved">isSolved</a></li><li><a href="global.html">Login</a></li><li><a href="global.html">Login Page</a></li><li><a href="global.html">Logout</a></li><li><a href="global.html">Question Detail Page</a></li><li><a href="global.html">Register Account</a></li><li><a href="global.html">Registration</a></li><li><a href="global.html">Submit a Question</a></li><li><a href="global.html">Submit an Answer</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">userQuestion</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        userQuestion
+        </h2>
+        
+            <div class="class-description">A class that represents questions with the users who posted it with methods to read and write questions and usersto a database.</div>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+    
+    <h2>Constructor</h2>
+    
+
+    <h4 class="name" id="userQuestion"><span class="type-signature"></span>new userQuestion<span class="signature">(dbName<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="modules_userQuestions.js.html">modules/userQuestions.js</a>, <a href="modules_userQuestions.js.html#line22">line 22</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Creates the link table between users and questions in the database.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>dbName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>:memory:</code>
+                
+                </td>
+            
+
+            <td class="description last">The file path to the database. By default it creates a database in memory.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="__createTestDB"><span class="type-signature">(async) </span>__createTestDB<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="modules_userQuestions.js.html">modules/userQuestions.js</a>, <a href="modules_userQuestions.js.html#line139">line 139</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Creates a database to be used for unit testing ONLY.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="addUserQuestion"><span class="type-signature">(async) </span>addUserQuestion<span class="signature">(user, questionID)</span><span class="type-signature"> &rarr; {Promise.&lt;boolean>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="modules_userQuestions.js.html">modules/userQuestions.js</a>, <a href="modules_userQuestions.js.html#line49">line 49</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Adds a username and questionID to the database.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>user</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The username of who posted the question.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>questionID</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">integer</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The ID of the question that was asked.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+    <div class="param-desc">
+    
+        Will throw an error if either user or questionID are ''.
+    
+    </div>
+
+
+    
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Whether the SQL query ran successfully or not.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;boolean></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="allUserQuestions"><span class="type-signature">(async) </span>allUserQuestions<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;Array.&lt;<a href="global.html#userQuestionData">userQuestionData</a>>>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="modules_userQuestions.js.html">modules/userQuestions.js</a>, <a href="modules_userQuestions.js.html#line83">line 83</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Retrieves all the questions with their users in the database.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Array containing all the questions with their users in the database.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;Array.&lt;<a href="global.html#userQuestionData">userQuestionData</a>>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="oneUserQuestion"><span class="type-signature">(async) </span>oneUserQuestion<span class="signature">(questionID)</span><span class="type-signature"> &rarr; {Promise.&lt;<a href="global.html#userQuestionData">userQuestionData</a>>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="modules_userQuestions.js.html">modules/userQuestions.js</a>, <a href="modules_userQuestions.js.html#line104">line 104</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Retreives a question from the database if it matches the questionID.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>questionID</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">integer</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The ID of the question.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+    <div class="param-desc">
+    
+        Will throw an error is id is ''.
+    
+    </div>
+
+
+    
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - Object containing the question details.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;<a href="global.html#userQuestionData">userQuestionData</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="searchUserQuestion"><span class="type-signature">(async) </span>searchUserQuestion<span class="signature">(id, query)</span><span class="type-signature"> &rarr; {Promise.&lt;<a href="global.html#userQuestionData">userQuestionData</a>>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="modules_userQuestions.js.html">modules/userQuestions.js</a>, <a href="modules_userQuestions.js.html#line123">line 123</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Retrieves one question with user details from the database that matches the search queries.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">integer</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The ID of the question to be searched.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>query</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The title of the question to be searched.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The question that matched the search query.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;<a href="global.html#userQuestionData">userQuestionData</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Mon Dec 02 2019 02:20:56 GMT+0000 (Greenwich Mean Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>modules/answer.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Answer.html">Answer</a><ul class='methods'><li data-type='method'><a href="Answer.html#addAnswer">addAnswer</a></li><li data-type='method'><a href="Answer.html#allAnswers">allAnswers</a></li><li data-type='method'><a href="Answer.html#oneAnswer">oneAnswer</a></li></ul></li><li><a href="correctAnswer.html">correctAnswer</a><ul class='methods'><li data-type='method'><a href="correctAnswer.html#__createTestDB">__createTestDB</a></li><li data-type='method'><a href="correctAnswer.html#addCorrectAnswer">addCorrectAnswer</a></li><li data-type='method'><a href="correctAnswer.html#oneCorrectAnswer">oneCorrectAnswer</a></li></ul></li><li><a href="module.exports.html">exports</a><ul class='methods'><li data-type='method'><a href="module.exports.html#__createTestDB">__createTestDB</a></li><li data-type='method'><a href="module.exports.html#addscore">addscore</a></li><li data-type='method'><a href="module.exports.html#getMaxScore">getMaxScore</a></li><li data-type='method'><a href="module.exports.html#getPP">getPP</a></li><li data-type='method'><a href="module.exports.html#login">login</a></li><li data-type='method'><a href="module.exports.html#register">register</a></li><li data-type='method'><a href="module.exports.html#subscore">subscore</a></li><li data-type='method'><a href="module.exports.html#testforthrow">testforthrow</a></li><li data-type='method'><a href="module.exports.html#testuserandpass">testuserandpass</a></li><li data-type='method'><a href="module.exports.html#upload">upload</a></li></ul></li><li></li><li><a href="Question.html">Question</a><ul class='methods'><li data-type='method'><a href="Question.html#addQuestion">addQuestion</a></li><li data-type='method'><a href="Question.html#allQuestions">allQuestions</a></li><li data-type='method'><a href="Question.html#checkParams">checkParams</a></li><li data-type='method'><a href="Question.html#searchQuestion">searchQuestion</a></li></ul></li><li><a href="questionAnswer.html">questionAnswer</a><ul class='methods'><li data-type='method'><a href="questionAnswer.html#__createTestDB">__createTestDB</a></li><li data-type='method'><a href="questionAnswer.html#addQuestionAnswer">addQuestionAnswer</a></li><li data-type='method'><a href="questionAnswer.html#allQuestionAnswers">allQuestionAnswers</a></li></ul></li><li><a href="userAnswer.html">userAnswer</a><ul class='methods'><li data-type='method'><a href="userAnswer.html#__createTestDB">__createTestDB</a></li><li data-type='method'><a href="userAnswer.html#addUserAnswer">addUserAnswer</a></li><li data-type='method'><a href="userAnswer.html#allUserAnswers">allUserAnswers</a></li></ul></li><li><a href="userQuestion.html">userQuestion</a><ul class='methods'><li data-type='method'><a href="userQuestion.html#__createTestDB">__createTestDB</a></li><li data-type='method'><a href="userQuestion.html#addUserQuestion">addUserQuestion</a></li><li data-type='method'><a href="userQuestion.html#allUserQuestions">allUserQuestions</a></li><li data-type='method'><a href="userQuestion.html#oneUserQuestion">oneUserQuestion</a></li><li data-type='method'><a href="userQuestion.html#searchUserQuestion">searchUserQuestion</a></li></ul></li></ul><h3>Modules</h3><ul><li><a href="module-controllers_correct.html">controllers/correct</a></li><li><a href="module-modules_getRating.html">modules/getRating</a></li><li><a href="module-modules_markCorrect.html">modules/markCorrect</a></li><li><a href="module-modules_submitImage.html">modules/submitImage</a><ul class='methods'><li data-type='method'><a href="module-modules_submitImage.html#.validate">validate</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html">Add Question Page</a></li><li><a href="global.html#getRankingArr">getRankingArr</a></li><li><a href="global.html#getRankingObj">getRankingObj</a></li><li><a href="global.html#Handlebars">Handlebars</a></li><li><a href="global.html">Home Page</a></li><li><a href="global.html#insertData">insertData</a></li><li><a href="global.html#isSolved">isSolved</a></li><li><a href="global.html">Login</a></li><li><a href="global.html">Login Page</a></li><li><a href="global.html">Logout</a></li><li><a href="global.html">Question Detail Page</a></li><li><a href="global.html">Register Account</a></li><li><a href="global.html">Registration</a></li><li><a href="global.html">Submit a Question</a></li><li><a href="global.html">Submit an Answer</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">modules/answer.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict'
+
+const sqlite = require('sqlite-async')
+const UserAnswers = require('./userAnswers.js')
+const QuestionAnswers = require('./questionAnswers.js')
+
+/**
+ * @fileoverview An answers file that's primarily used to add answers to a database. Retrieving data
+ * is supported but not reccomended as there are other files with methods more suited to the task.
+ */
+
+/**
+ * A class that represents an answer with methods to read and write answers to a database.
+ */
+class Answer {
+	/**
+     * Creates the answers table in the database.
+     * @param {string} [dbName = :memory:] - The file path to the database. By default it creates a database in memory.
+     */
+	constructor(dbName = ':memory:') {
+		return (async() => {
+			this.db = await sqlite.open(dbName)
+			const sql = `CREATE TABLE IF NOT EXISTS answers (
+				answerID INTEGER PRIMARY KEY AUTOINCREMENT,
+				answer TEXT,
+				inappropriate INTEGER DEFAULT 0,
+				dateAdded TEXT
+			);`
+			await this.db.run(sql)
+			return this
+		})()
+	}
+
+	/**
+	 * Adds an answer to the database.
+	 * @param {string} answer - The title of the answer.
+	 * @param {integer} inappropriate - Whether an answer is inappropiate (1) or not (0).
+	 * @returns {Promise&lt;boolean>} Whether the SQL query ran successfully or not.
+	 * @throws Will throw an error if the answer, user or questionID is ''.
+	 */
+	async addAnswer(answer, inappropriate, user, questionID) {
+		try {
+			if(answer === '') throw new Error('There is no answer')
+			if(user === '') throw new Error('There is no user')
+			if(questionID === '') throw new Error('There is no questionID')
+			let sql = `INSERT into answers(answer, inappropriate, dateAdded) 
+				VALUES("${answer}", "${inappropriate}", datetime("now"))`
+			await this.db.run(sql)
+			sql = 'SELECT last_insert_rowid()'
+			const answerID = await this.db.run(sql) // retrieves the last answerID inserted into the database
+			const ua = await new UserAnswers(this.db.filename)
+			await ua.addUserAnswer(user, answerID.lastID)
+			const qa = await new QuestionAnswers(this.db.filename)
+			await qa.addQuestionAnswer(questionID, answerID.lastID)
+			return true
+		} catch (err) {
+			throw err
+		}
+	}
+
+	/**
+     * @typedef {Object} answerData
+     * @property {integer} answerID - The ID of the answer.
+     * @property {string} answer - The answer text.
+     * @property {integer} inappropiate - Whether an answer is inappropiate (1) or not (0).
+     * @property {string} dateAdded - The date and time the question was answered.
+     */
+
+	/**
+     * Retrieves all the answers in the database.
+     * @returns {Promise&lt;Array&lt;answerData>>} Array containing all the answers in the database.
+     */
+	async allAnswers() {
+		try {
+			const sql = 'SELECT * FROM answers'
+			const data = await this.db.all(sql)
+			if (data.length === 0) throw new Error('There are no answers')
+			return data
+		} catch (err) {
+			throw err
+		}
+	}
+
+	/**
+     * Retrieves one answer from the database that matches the search queries.
+     * @param {integer} id - The ID of the answer to be searched.
+     * @returns {Promise&lt;answerData>} The answer that matched the search query.
+     */
+	async oneAnswer(id) {
+		try {
+			if (id === '') {
+				throw new Error('There is no search term provided')
+			}
+			const sql = `SELECT * FROM answers WHERE answerID="${id}"`
+			const data = await this.db.get(sql)
+			return data
+		} catch (err) {
+			throw err
+		}
+	}
+}
+
+module.exports = Answer
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Mon Dec 02 2019 02:20:56 GMT+0000 (Greenwich Mean Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

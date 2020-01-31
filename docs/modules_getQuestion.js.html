@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>modules/getQuestion.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Answer.html">Answer</a><ul class='methods'><li data-type='method'><a href="Answer.html#addAnswer">addAnswer</a></li><li data-type='method'><a href="Answer.html#allAnswers">allAnswers</a></li><li data-type='method'><a href="Answer.html#oneAnswer">oneAnswer</a></li></ul></li><li><a href="correctAnswer.html">correctAnswer</a><ul class='methods'><li data-type='method'><a href="correctAnswer.html#__createTestDB">__createTestDB</a></li><li data-type='method'><a href="correctAnswer.html#addCorrectAnswer">addCorrectAnswer</a></li><li data-type='method'><a href="correctAnswer.html#oneCorrectAnswer">oneCorrectAnswer</a></li></ul></li><li><a href="module.exports.html">exports</a><ul class='methods'><li data-type='method'><a href="module.exports.html#addscore">addscore</a></li><li data-type='method'><a href="module.exports.html#getPP">getPP</a></li><li data-type='method'><a href="module.exports.html#login">login</a></li><li data-type='method'><a href="module.exports.html#register">register</a></li><li data-type='method'><a href="module.exports.html#subscore">subscore</a></li><li data-type='method'><a href="module.exports.html#testforthrow">testforthrow</a></li><li data-type='method'><a href="module.exports.html#upload">upload</a></li></ul></li><li><a href="module-modules_getRating.html">modules/getRating</a></li><li><a href="Question.html">Question</a><ul class='methods'><li data-type='method'><a href="Question.html#addQuestion">addQuestion</a></li><li data-type='method'><a href="Question.html#allQuestions">allQuestions</a></li><li data-type='method'><a href="Question.html#searchQuestion">searchQuestion</a></li></ul></li><li><a href="questionAnswer.html">questionAnswer</a><ul class='methods'><li data-type='method'><a href="questionAnswer.html#__createTestDB">__createTestDB</a></li><li data-type='method'><a href="questionAnswer.html#addQuestionAnswer">addQuestionAnswer</a></li><li data-type='method'><a href="questionAnswer.html#allQuestionAnswers">allQuestionAnswers</a></li></ul></li><li><a href="userAnswer.html">userAnswer</a><ul class='methods'><li data-type='method'><a href="userAnswer.html#__createTestDB">__createTestDB</a></li><li data-type='method'><a href="userAnswer.html#addUserAnswer">addUserAnswer</a></li><li data-type='method'><a href="userAnswer.html#allUserAnswers">allUserAnswers</a></li></ul></li><li><a href="userQuestion.html">userQuestion</a><ul class='methods'><li data-type='method'><a href="userQuestion.html#__createTestDB">__createTestDB</a></li><li data-type='method'><a href="userQuestion.html#addUserQuestion">addUserQuestion</a></li><li data-type='method'><a href="userQuestion.html#allUserQuestions">allUserQuestions</a></li><li data-type='method'><a href="userQuestion.html#oneUserQuestion">oneUserQuestion</a></li><li data-type='method'><a href="userQuestion.html#searchUserQuestion">searchUserQuestion</a></li></ul></li></ul><h3>Modules</h3><ul><li><a href="module-controllers_correct.html">controllers/correct</a></li><li><a href="module-controllers_rate.html">controllers/rate</a></li><li><a href="module-modules_date.html">modules/date</a></li><li><a href="module-modules_getAnswer.html">modules/getAnswer</a></li><li><a href="module-modules_getQuestion.html">modules/getQuestion</a></li><li><a href="module-modules_getRating.html">modules/getRating</a></li><li><a href="module-modules_initDB.html">modules/initDB</a></li><li><a href="module-modules_markCorrect.html">modules/markCorrect</a></li><li><a href="module-modules_submitImage.html">modules/submitImage</a><ul class='methods'><li data-type='method'><a href="module-modules_submitImage.html#.addImage">addImage</a></li><li data-type='method'><a href="module-modules_submitImage.html#.validate">validate</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html">Add Question Page</a></li><li><a href="global.html#Handlebars">Handlebars</a></li><li><a href="global.html">Home Page</a></li><li><a href="global.html#isSolved">isSolved</a></li><li><a href="global.html">Login</a></li><li><a href="global.html">Login Page</a></li><li><a href="global.html">Logout</a></li><li><a href="global.html">Question Detail Page</a></li><li><a href="global.html">Register Account</a></li><li><a href="global.html">Registration</a></li><li><a href="global.html">Submit a Question</a></li><li><a href="global.html">Submit an Answer</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">modules/getQuestion.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict'
+const sqlite = require('sqlite-async')
+/**
+ * @module
+ */
+
+/**
+ * Fetch either a single question, multiple questions according to a query or all questions depending on params passed.
+ * @param {string} database The database file path
+ * @param {integer} id The unique answer ID to fetch (if data for a single question is required)
+ * @param {string} query The query string used to search the database (if a query was made through home page)
+ * @returns {object} The data for the question(s)
+ */
+module.exports = async(database, ctx, query) => {
+	try {
+		let sql = 'SELECT * FROM Questions;'
+		if (ctx.params.id &amp;&amp; !query) {
+			sql = `SELECT * FROM Questions WHERE id = ${ctx.params.id};`
+		} else if (!ctx.params.id &amp;&amp; query) {
+			sql = `SELECT id, question, details, author, date, pathPPAsker, solved FROM Questions WHERE upper(question) 
+			LIKE "%${query}%" ;`
+		}
+		const db = await sqlite.open(database)
+		const questionData = await db.all(sql)
+		await db.close()
+		return questionData
+	} catch (err) {
+		throw err
+	}
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Thu Nov 28 2019 02:23:45 GMT+0000 (Greenwich Mean Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# Hook to ensure length of commit message line is no longer than 72 characters
+
+while read line; do
+    # Skip comments
+    if [ "${line:0:1}" == "#" ]; then
+        continue
+    fi
+    if [ ${#line} -ge 72 ]; then
+        echo "Commit messages must be no longer than 72 characters. Fix your message and then re-commit your changes."
+        echo "This has ${#line} characters:"
+        echo "${line}"
+        exit 1
+    fi
+done < "${1}"
+
+exit 0
